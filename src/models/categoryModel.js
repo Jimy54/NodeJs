@@ -1,15 +1,19 @@
 'use strict'
-
 const mysql = require('mysql');
 
-const Connection =  require('../../../db/connection');
+const connection = mysql.createConnection({
+  host: 'localhost',
+  user: 'root',
+  password: '',
+  database: 'DespairDB'
+});
 
 let category = {};
 
 category.listCategories = (callback) => {
-  if(Connection){
-    Connection.query(
-      `SELECT * FROM Categories ORDER BY CategoryID = ${Connection.escape(businessData.BusinessID)}`,
+  if(connection){
+    connection.query(
+      `SELECT * FROM Categories ORDER BY CategoryID`,
       (error, data) => {
         if(error){
           throw error;
@@ -19,61 +23,62 @@ category.listCategories = (callback) => {
       }
     )
   } else {
-    callback(null, "Error connection");
+    callback(null, {msg: 'Error connection'});
   }
 };
 
 category.createCategory = (categoryData, callback) => {
-  if(Connection){
-    Connection.query(
+  if(connection){
+    connection.query(
       `INSERT INTO Categories SET ?`, categoryData,
-      (err, data) => {
+      (error, data) => {
         if(error){
           throw error;
         } else {
-          callback(null, {msg: "Created category"});
+          callback(null, {msg: 'Created category', insertID: data.insertID});
         }
       }
     )
   } else {
-    callback(null, {msg: "Error connection"});
+    callback(null, {msg: 'Error connection'});
   }
 };
 
 category.updateCategory = (categoryData, callback) => {
-  if(Connection){
+  if(connection){
     const updateData = `
       UPDATE Categories SET
-      CategoryDescription = ${Connection.escape(CategoryData.CategoryDescription)}
-      WHERE CategoryID = ${Connection.escape(CategoryData.CategoryID)}
+      CategoryDescription = ${connection.escape(categoryData.CategoryDescription)},
+      BusinessID = ${connection.escape(categoryData.BusinessID)}
+      WHERE CategoryID = ${connection.escape(categoryData.CategoryID)}
     `;
-    Connection.query(sql, (error, data) => {
+    connection.query(sql, (error, data) => {
       if(error){
         throw error;
       } else {
-        callback(null, {msg: "Updated category"});
+        callback(null, {msg: 'Updated category'});
       }
     });
   } else {
-    callback(null, {msg: "Error connection"});
+    callback(null, {msg: 'Error connection'});
   }
 };
 
 category.deleteCategory = (CategoryID, callback) => {
-  if(Connection){
+  if(connection){
     const deleteData = `
-      DELETE FROM Categories WHERE CategoryID = ${Connection.escape(CategoryID)}
+      DELETE FROM Categories WHERE CategoryID = ${connection.escape(CategoryID)}
     `;
 
-    Connection.query(sql, (err, data) => {
+    connection.query(sql, (err, data) => {
       if(error){
         throw error;
       } else {
-        callback(null, {msg: "Deleted category"})
+        callback(null, {msg: 'Deleted category'})
       }
     })
   } else {
-    callback(null, {msg: "Error connection"});
+    callback(null, {msg: 'Error connection'});
   }
 };
 

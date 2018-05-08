@@ -1,6 +1,7 @@
 'use strict'
 const express = require('express');
 const app = express();
+const bodyParser = require('body-parser');
 
 //port
 app.set("port", process.env.PORT || 4120);
@@ -8,6 +9,10 @@ app.set("port", process.env.PORT || 4120);
 app.listen(app.get("port"), () => {
   console.log("Server running on port 4120");
 });
+
+//middlewares
+app.use(bodyParser.urlencoded({ extended: false}));
+app.use(bodyParser.json());
 
 //headers
 app.use((req, res, next) => {
@@ -20,7 +25,14 @@ app.use((req, res, next) => {
 });
 
 //routes
+require("./routes/categoryRoutes")(app);
+require("./routes/businessRoutes")(app);
+require("./routes/providerRoutes")(app);
+require("./routes/employerRoutes")(app);
+require("./routes/categoryRoutes")(app);
 
+//listen
+app.listen();
 
 //export
 module.exports = app;

@@ -17,7 +17,7 @@ USE `DespairDB` ;
 -- -----------------------------------------------------
 -- Table `DespairDB`.`User`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `DespairDB`.`User` (
+CREATE TABLE IF NOT EXISTS `DespairDB`.`Users` (
   `UserID` INT NOT NULL AUTO_INCREMENT,
   `UserName` VARCHAR(100) NULL,
   `UserNickName` VARCHAR(45) NULL,
@@ -38,10 +38,10 @@ CREATE TABLE IF NOT EXISTS `DespairDB`.`Business` (
   `BusinessLogo` LONGTEXT NULL,
   `UserID` INT NOT NULL,
   PRIMARY KEY (`BusinessID`),
-  INDEX `fk_Business_User1_idx` (`UserID` ASC),
-  CONSTRAINT `fk_Business_User1`
+  INDEX `fk_Business_Users1_idx` (`UserID` ASC),
+  CONSTRAINT `fk_Business_Users1`
     FOREIGN KEY (`UserID`)
-    REFERENCES `DespairDB`.`User` (`UserID`)
+    REFERENCES `DespairDB`.`Users` (`UserID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -201,32 +201,32 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `DespairDB`.`Employers`
+-- Table `DespairDB`.`Employees`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `DespairDB`.`Employers` (
-  `EmployerID` INT NOT NULL AUTO_INCREMENT,
-  `EmployerName` VARCHAR(100) NULL,
-  `EmployerPhone` VARCHAR(100) NULL,
-  `EmployerAddress` VARCHAR(100) NULL,
-  `EmployerEmail` VARCHAR(150) NULL,
-  `EmployerAge` INT NULL,
-  `EmployerSalary` DOUBLE NULL,
-  `EmployerContratation` DATE NULL,
-  `EmployerRol` VARCHAR(150) NULL,
-  `EmployerImage` LONGTEXT NULL,
-  `EmployerUser` VARCHAR(100) NULL,
-  `EmployerPassword` VARCHAR(100) NULL,
+CREATE TABLE IF NOT EXISTS `DespairDB`.`Employees` (
+  `EmployeeID` INT NOT NULL AUTO_INCREMENT,
+  `EmployeeName` VARCHAR(100) NULL,
+  `EmployeePhone` VARCHAR(100) NULL,
+  `EmployeeAddress` VARCHAR(100) NULL,
+  `EmployeeEmail` VARCHAR(150) NULL,
+  `EmployeeAge` INT NULL,
+  `EmployeeSalary` DOUBLE NULL,
+  `EmployeeContratation` DATE NULL,
+  `EmployeeRol` VARCHAR(150) NULL,
+  `EmployeeImage` LONGTEXT NULL,
+  `EmployeeUser` VARCHAR(100) NULL,
+  `EmployeePassword` VARCHAR(100) NULL,
   `BranchOfficeID` INT NOT NULL,
   `BusinessID` INT NOT NULL,
-  PRIMARY KEY (`EmployerID`),
-  INDEX `fk_Employers_BranchOffice1_idx` (`BranchOfficeID` ASC),
-  INDEX `fk_Employers_Business1_idx` (`BusinessID` ASC),
-  CONSTRAINT `fk_Employers_BranchOffice1`
+  PRIMARY KEY (`EmployeeID`),
+  INDEX `fk_Employees_BranchOffice1_idx` (`BranchOfficeID` ASC),
+  INDEX `fk_Employees_Business1_idx` (`BusinessID` ASC),
+  CONSTRAINT `fk_Employees_BranchOffice1`
     FOREIGN KEY (`BranchOfficeID`)
     REFERENCES `DespairDB`.`BranchOffice` (`BranchOfficeID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Employers_Business1`
+  CONSTRAINT `fk_Employees_Business1`
     FOREIGN KEY (`BusinessID`)
     REFERENCES `DespairDB`.`Business` (`BusinessID`)
     ON DELETE NO ACTION
@@ -323,16 +323,6 @@ CREATE TABLE IF NOT EXISTS `DespairDB`.`Moves` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `DespairDB`.`user`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `DespairDB`.`user` (
-  `username` VARCHAR(16) NOT NULL,
-  `email` VARCHAR(255) NULL,
-  `password` VARCHAR(32) NOT NULL,
-  `create_time` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP);
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
