@@ -10,7 +10,7 @@ function createCategory(req, res){
   const categoryData = {
     CategoryID: null,
     CategoryDescription: req.body.CategoryDescription,
-    BusinessID: req.body.BusinessID
+    BusinessID: req.params.BusinessID
   }
 
   categoryModel.createCategory(categoryData, (error, data) => {
@@ -29,7 +29,7 @@ function updateCategory(req, res){
     BusinessID: req.params.BusinessID
   }
 
-  categoryData.updateCategory(categoryData, (err, data) => {
+  categoryModel.updateCategory(categoryData, (err, data) => {
     if(data && data.msg){
       res.status(200).json(data);
     } else  {

@@ -28,8 +28,10 @@ app.use((req, res, next) => {
 require("./routes/categoryRoutes")(app);
 require("./routes/businessRoutes")(app);
 require("./routes/providerRoutes")(app);
-require("./routes/employerRoutes")(app);
-require("./routes/categoryRoutes")(app);
+require("./routes/employeeRoutes")(app);
+require("./routes/userRoutes")(app);
+require("./routes/branchOfficeRoutes")(app);
+
 
 //listen
 app.listen();
