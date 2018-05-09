@@ -50,10 +50,10 @@ BranchOffice.updateBranchOffice = (BranchOfficeData, callback) => {
       UPDATE BranchOffices SET
       BranchOfficeName = ${connection.escape(BranchOfficeData.BranchOfficeName)},
       BranchOfficeAddress = ${connection.escape(BranchOfficeData.BranchOfficeAddress)},
-      BranchOfficePhone = ${connection.escape(BranchOfficeData.BranchOfficePhone)},
+      BranchOfficePhone = ${connection.escape(BranchOfficeData.BranchOfficePhone)}
       WHERE BranchOfficeID = ${connection.escape(BranchOfficeData.BranchOfficeID)}
     `;
-    connection.query(sql, (error, data) => {
+    connection.query(updateData, (error, data) => {
       if(error){
         throw error;
       } else {
@@ -71,7 +71,7 @@ BranchOffice.deleteBranchOffice = (BranchOfficeID, callback) => {
       DELETE FROM BranchOffices WHERE BranchOfficeID = ${connection.escape(BranchOfficeID)}
     `;
 
-    connection.query(sql, (err, data) => {
+    connection.query(deleteData, (error, data) => {
       if(error){
         throw error;
       } else {

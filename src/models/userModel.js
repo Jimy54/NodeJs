@@ -8,12 +8,12 @@ const connection = mysql.createConnection({
   database: 'DespairDB'
 });
 
-let category = {};
+let user = {};
 
-category.listCategories = (callback) => {
+user.listUsers = (callback) => {
   if(connection){
     connection.query(
-      `SELECT * FROM Categories ORDER BY CategoryID`,
+      `SELECT * FROM Users ORDER BY UserID`,
       (error, data) => {
         if(error){
           throw error;
@@ -27,15 +27,15 @@ category.listCategories = (callback) => {
   }
 };
 
-category.createCategory = (categoryData, callback) => {
+user.createUser = (userData, callback) => {
   if(connection){
     connection.query(
-      `INSERT INTO Categories SET ?`, categoryData,
+      `INSERT INTO Users SET ?`, userData,
       (error, data) => {
         if(error){
           throw error;
         } else {
-          callback(null, {msg: 'Created category', insertID: data.insertID});
+          callback(null, {msg: 'Created user', insertID: data.insertID});
         }
       }
     )
@@ -44,19 +44,21 @@ category.createCategory = (categoryData, callback) => {
   }
 };
 
-category.updateCategory = (categoryData, callback) => {
+user.updateUser = (userData, callback) => {
   if(connection){
     const updateData = `
-      UPDATE Categories SET
-      CategoryDescription = ${connection.escape(categoryData.CategoryDescription)},
-      BusinessID = ${connection.escape(categoryData.BusinessID)}
-      WHERE CategoryID = ${connection.escape(categoryData.CategoryID)}
+      UPDATE Users SET
+      UserName = ${connection.escape(userData.UserName)},
+      UserNickName = ${connection.escape(userData.UserNickName)},
+      UserEmail = ${connection.escape(userData.UserEmail)},
+      UserPassword = ${connection.escape(userData.UserPassword)}
+      WHERE UserID = ${connection.escape(userData.UserID)}
     `;
     connection.query(updateData, (error, data) => {
       if(error){
         throw error;
       } else {
-        callback(null, {msg: 'Updated category'});
+        callback(null, {msg: 'Updated user'});
       }
     });
   } else {
@@ -64,16 +66,17 @@ category.updateCategory = (categoryData, callback) => {
   }
 };
 
-category.deleteCategory = (CategoryID, callback) => {
+user.deleteUser = (UserID, callback) => {
   if(connection){
     const deleteData = `
-      DELETE FROM Categories WHERE CategoryID = ${connection.escape(CategoryID)}
+      DELETE FROM Users WHERE UserID = ${connection.escape(UserID)}
     `;
+
     connection.query(deleteData, (error, data) => {
       if(error){
         throw error;
       } else {
-        callback(null, {msg: 'Deleted category'})
+        callback(null, {msg: 'Deleted user'})
       }
     })
   } else {
@@ -81,4 +84,4 @@ category.deleteCategory = (CategoryID, callback) => {
   }
 };
 
-module.exports = category;
+module.exports = user;
