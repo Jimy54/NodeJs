@@ -29,6 +29,7 @@ require("./routes/userRoutes")(app);
 require("./routes/businessRoutes")(app);
 require("./routes/categoryRoutes")(app);
 require("./routes/branchOfficeRoutes")(app);
+require("./routes/employeeRoutes")(app);
 
 
 //listen
