@@ -30,6 +30,7 @@ require("./routes/businessRoutes")(app);
 require("./routes/categoryRoutes")(app);
 require("./routes/branchOfficeRoutes")(app);
 require("./routes/employeeRoutes")(app);
+require("./routes/providerRoutes")(app);
 
 
 //listen
