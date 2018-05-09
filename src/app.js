@@ -25,8 +25,9 @@ app.use((req, res, next) => {
 });
 
 //routes
-require("./routes/categoryRoutes")(app);
 require("./routes/userRoutes")(app);
+require("./routes/businessRoutes")(app);
+require("./routes/categoryRoutes")(app);
 require("./routes/branchOfficeRoutes")(app);
 
 
