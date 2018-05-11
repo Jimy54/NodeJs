@@ -25,7 +25,7 @@ function createEmployee(req, res) {
   };
 
   employeeModel.createEmployee(employeeData, (error, data) => {
-    if (data && data.insertID) {
+    if (data) {
       res.status(200).json(data);
     } else {
       res.status(500).json({ msg: "Error" });
