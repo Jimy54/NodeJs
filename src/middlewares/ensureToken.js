@@ -1,5 +1,5 @@
-const jwt = require("jsonwebtoken");
-process.env.SECRET_KEY = "DespairProyect";
+const jwt = require('jsonwebtoken');
+process.env.SECRET_KEY = 'DespairProyect';
 
 function ensureToken(req, res, next) {
   const bearerHeader = req.headers["authorization"];
@@ -19,4 +19,4 @@ function ensureToken(req, res, next) {
   }
 }
 
-module.exports = { ensureToken };
+module.exports = {ensureToken};

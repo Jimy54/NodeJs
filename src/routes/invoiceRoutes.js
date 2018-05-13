@@ -3,11 +3,24 @@ var invoiceController = require("../controllers/invoiceController");
 var ensureToken = require("../middlewares/ensureToken");
 
 module.exports = function(app) {
-  app.get("/invoice/listInvoices", invoiceController.listInvoices);
-  app.post("/invoice/createInvoice", invoiceController.createInvoice);
-  app.put("/invoice/updateInvoice/:InvoiceID", invoiceController.updateInvoice);
+  app.get(
+    "/invoice/listInvoices",
+    ensureToken.ensureToken,
+    invoiceController.listInvoices
+  );
+  app.post(
+    "/invoice/createInvoice",
+    ensureToken.ensureToken,
+    invoiceController.createInvoice
+  );
+  app.put(
+    "/invoice/updateInvoice/:InvoiceID",
+    ensureToken.ensureToken,
+    invoiceController.updateInvoice
+  );
   app.delete(
     "/invoice/deleteInvoice/:InvoiceID",
+    ensureToken.ensureToken,
     invoiceController.deleteInvoice
   );
 };
