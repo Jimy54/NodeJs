@@ -58,7 +58,7 @@ inventary.updateInventary = (inventaryData, callback) => {
       InventaryImage = ${connection.escape(inventaryData.InventaryImage)},
       CodeBar = ${connection.escape(inventaryData.CodeBar)},
       BusinessID = ${connection.escape(inventaryData.BusinessID)},
-      CategoryID = ${connection.escape(inventaryData.CategoryID)},
+      CategoryID = ${connection.escape(inventaryData.CategoryID)}
       WHERE InventaryID = ${connection.escape(inventaryData.InventaryID)}
     `;
     connection.query(updateData, (error, data) => {
@@ -73,7 +73,7 @@ inventary.updateInventary = (inventaryData, callback) => {
   }
 };
 
-inventary.deleteInventary = (inventaryID, callback) => {
+inventary.deleteInventary = (InventaryID, callback) => {
   if (connection) {
     const deleteData = `
       DELETE FROM Inventaries WHERE InventaryID = ${connection.escape(
