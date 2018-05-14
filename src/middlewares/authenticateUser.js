@@ -26,13 +26,14 @@ function authenticateUser(req, res, next) {
               req.body.UserPassword,
               process.env.SECRET_KEY
             );
-            res.status(200).json({ token, data });
+
+            res.status(200).json({ token, data});
             next();
           } else {
-            res.json({ msg: "Wrong data" });
+            res.json({data:{msg: "Wrong data"}});
           }
         } else {
-          res.json({ msg: "Email not found" });
+          res.json({data:{msg: "Email not found"}});
         }
       }
     }

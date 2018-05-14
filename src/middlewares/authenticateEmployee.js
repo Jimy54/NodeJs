@@ -26,13 +26,14 @@ function authenticateEmployee(req, res, next) {
               req.body.EmployeePassword,
               process.env.SECRET_KEY
             );
-            res.status(200).json({ token, data });
+            const BusinessID = `SELECT Business.BusinessID FROM Business WHERE BusinessID.UserID = ${connection.escape(BusinessID)}`
+            res.status(200).json({ token, data, BusinessID});
             next();
           } else {
-            res.json({ msg: "Wrong data" });
+            res.json({data:{msg: "Wrong data"}});
           }
         } else {
-          res.json({ msg: "EmployeeUser not found" });
+          res.json({data:{msg: "EmployeeUser not found"}});
         }
       }
     }
