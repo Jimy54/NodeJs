@@ -197,8 +197,7 @@ CREATE TABLE IF NOT EXISTS `DespairDB`.`Invoices` (
     FOREIGN KEY (`BusinessID`)
     REFERENCES `DespairDB`.`Business` (`BusinessID`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  )
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
