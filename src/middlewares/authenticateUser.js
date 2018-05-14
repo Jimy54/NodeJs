@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
-process.env.SECRET_KEY = "DespairProyect";
 const mysql = require("mysql");
+process.env.SECRET_KEY = "DespairProyect";
 
 const connection = mysql.createConnection({
   host: "localhost",
@@ -14,7 +14,7 @@ function authenticateUser(req, res, next) {
   const UserPassword = req.body.UserPassword;
 
   connection.query(
-    "SELECT * FROM Users WHERE UserEmail = ?",
+    "SELECT * FROM Users JOIN Business ON Users.UserID = Business.UserID WHERE UserEmail = ?",
     UserEmail,
     function(error, data, source) {
       if (error) {
@@ -27,7 +27,7 @@ function authenticateUser(req, res, next) {
               process.env.SECRET_KEY
             );
 
-            res.status(200).json({ token, data});
+            res.status(200).json({token, data});
             next();
           } else {
             res.json({data:{msg: "Wrong data"}});
