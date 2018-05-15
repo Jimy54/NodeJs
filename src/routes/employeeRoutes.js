@@ -1,6 +1,7 @@
 const express = require("express");
 var employeeController = require("../controllers/employeeController");
 var ensureToken = require("../middlewares/ensureToken");
+var authenticateEmployee = require("../middlewares/authenticateEmployee");
 module.exports = function(app) {
   app.get(
     "/employee/listEmployees",
@@ -21,5 +22,10 @@ module.exports = function(app) {
     "/employee/deleteEmployee/:EmployeeID",
     ensureToken.ensureToken,
     employeeController.deleteEmployee
+  );
+
+  app.post(
+    "/employee/loginEmployee",
+    authenticateEmployee.authenticateEmployee
   );
 };

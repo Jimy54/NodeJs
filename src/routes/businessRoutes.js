@@ -3,11 +3,7 @@ var businessController = require("../controllers/businessController");
 var ensureToken = require("../middlewares/ensureToken");
 module.exports = function(app) {
   app.get("/business/listBusiness", businessController.listBusiness);
-  app.post(
-    "/business/createBusiness",
-    ensureToken.ensureToken,
-    businessController.createBusiness
-  );
+  app.post("/business/createBusiness", businessController.createBusiness);
   app.put(
     "/business/updateBusiness/:BusinessID",
     ensureToken.ensureToken,

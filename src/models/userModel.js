@@ -1,51 +1,45 @@
-'use strict'
-const mysql = require('mysql');
+"use strict";
+const mysql = require("mysql");
 
 const connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: '',
-  database: 'DespairDB'
+  host: "localhost",
+  user: "root",
+  password: "",
+  database: "DespairDB"
 });
 
 let user = {};
 
-user.listUsers = (callback) => {
-  if(connection){
-    connection.query(
-      `SELECT * FROM Users ORDER BY UserID`,
-      (error, data) => {
-        if(error){
-          throw error;
-        } else {
-          callback(null, data);
-        }
+user.listUsers = callback => {
+  if (connection) {
+    connection.query(`SELECT * FROM Users ORDER BY UserID`, (error, data) => {
+      if (error) {
+        throw error;
+      } else {
+        callback(null, data);
       }
-    )
+    });
   } else {
-    callback(null, {msg: 'Error connection'});
+    callback(null, { msg: "Error connection" });
   }
 };
 
 user.createUser = (userData, callback) => {
-  if(connection){
-    connection.query(
-      `INSERT INTO Users SET ?`, userData,
-      (error, data) => {
-        if(error){
-          throw error;
-        } else {
-          callback(null, {msg: 'Created user', insertID: data.insertID});
-        }
+  if (connection) {
+    connection.query(`INSERT INTO Users SET ?`, userData, (error, data) => {
+      if (error) {
+        throw error;
+      } else {
+        callback(null, { data: data, insertID: data.insertID });
       }
-    )
+    });
   } else {
-    callback(null, {msg: 'Error connection'});
+    callback(null, { msg: "Error connection" });
   }
 };
 
 user.updateUser = (userData, callback) => {
-  if(connection){
+  if (connection) {
     const updateData = `
       UPDATE Users SET
       UserName = ${connection.escape(userData.UserName)},
@@ -55,32 +49,32 @@ user.updateUser = (userData, callback) => {
       WHERE UserID = ${connection.escape(userData.UserID)}
     `;
     connection.query(updateData, (error, data) => {
-      if(error){
+      if (error) {
         throw error;
       } else {
-        callback(null, {msg: 'Updated user'});
+        callback(null, { msg: "Updated user" });
       }
     });
   } else {
-    callback(null, {msg: 'Error connection'});
+    callback(null, { msg: "Error connection" });
   }
 };
 
 user.deleteUser = (UserID, callback) => {
-  if(connection){
+  if (connection) {
     const deleteData = `
       DELETE FROM Users WHERE UserID = ${connection.escape(UserID)}
     `;
 
     connection.query(deleteData, (error, data) => {
-      if(error){
+      if (error) {
         throw error;
       } else {
-        callback(null, {msg: 'Deleted user'})
+        callback(null, { msg: "Deleted user" });
       }
-    })
+    });
   } else {
-    callback(null, {msg: 'Error connection'});
+    callback(null, { msg: "Error connection" });
   }
 };
 

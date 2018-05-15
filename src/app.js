@@ -38,7 +38,9 @@ require("./routes/inventaryRoutes")(app);
 require("./routes/invoiceRoutes")(app);
 require("./routes/moveRoutes")(app);
 require("./routes/providerRoutes")(app);
-
+require("./routes/invoiceDetaillRoutes")(app);
+require("./routes/purchaseDetaillRoutes")(app);
+require("./routes/purchaseRoutes")(app);
 //listen
 app.listen();
 

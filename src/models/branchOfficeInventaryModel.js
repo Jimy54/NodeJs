@@ -13,7 +13,7 @@ let branchOfficeInventary = {};
 branchOfficeInventary.listBranchOfficeInventary = callback => {
   if (connection) {
     connection.query(
-      `SELECT * FROM BranchOfficeInventary ORDER BY BranchOfficeInventaryID`,
+      `SELECT * FROM BranchOfficesInventary JOin BranchOffices on BranchOfficesInventary.BranchOfficeID =  BranchOffices.BranchOfficeID ORDER BY BranchOfficeInventaryID`,
       (error, data) => {
         if (error) {
           throw error;
@@ -33,7 +33,7 @@ branchOfficeInventary.createBranchOfficeInventary = (
 ) => {
   if (connection) {
     connection.query(
-      `INSERT INTO BranchOfficeInventary SET ?`,
+      `INSERT INTO BranchOfficesInventary SET ?`,
       branchOfficeInventaryData,
       (error, data) => {
         if (error) {
@@ -54,7 +54,7 @@ branchOfficeInventary.updateBranchOfficeInventary = (
 ) => {
   if (connection) {
     const updateData = `
-      UPDATE BranchOfficeInventary SET
+      UPDATE BranchOfficesInventary SET
       Description = ${connection.escape(branchOfficeInventaryData.Description)},
       Quantity = ${connection.escape(branchOfficeInventaryData.Quantity)},
       Price = ${connection.escape(branchOfficeData.Price)},
@@ -86,7 +86,7 @@ branchOfficeInventary.deleteBranchOfficeInventary = (
 ) => {
   if (connection) {
     const deleteData = `
-      DELETE FROM BranchOfficeInventary WHERE BranchOfficeInventaryID = ${connection.escape(
+      DELETE FROM BranchOfficesInventary WHERE BranchOfficeInventaryID = ${connection.escape(
         BranchOfficeInventaryID
       )}
     `;

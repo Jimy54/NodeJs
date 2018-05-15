@@ -8,12 +8,12 @@ const connection = mysql.createConnection({
   database: "DespairDB"
 });
 
-let business = {};
+let purchase = {};
 
-business.listBusiness = callback => {
+purchase.listPurchases = callback => {
   if (connection) {
     connection.query(
-      `SELECT * FROM Business ORDER BY BusinessID`,
+      `SELECT * FROM Purchases ORDER BY PurchaseID`,
       (error, data) => {
         if (error) {
           throw error;
@@ -27,19 +27,16 @@ business.listBusiness = callback => {
   }
 };
 
-business.createBusiness = (businessData, callback) => {
+purchase.createPurchase = (purchaseData, callback) => {
   if (connection) {
     connection.query(
-      `INSERT INTO Business SET ?`,
-      businessData,
+      `INSERT INTO Purchases SET ?`,
+      purchaseData,
       (error, data) => {
         if (error) {
           throw error;
         } else {
-          callback(null, {
-            data,
-            insertID: data.insertID
-          });
+          callback(null, { msg: "Created purchase" });
         }
       }
     );
@@ -48,20 +45,21 @@ business.createBusiness = (businessData, callback) => {
   }
 };
 
-business.updateBusiness = (businessData, callback) => {
+purchase.updatepurchase = (purchaseData, callback) => {
   if (connection) {
     const updateData = `
-      UPDATE Business SET
-      businessName = ${connection.escape(businessData.businessName)},
-      BusinessCountry = ${connection.escape(businessData.BusinessCountry)},
-      BusinessLogo = ${connection.escape(businessData.BusinessLogo)}
-      WHERE UserID = ${connection.escape(businessData.UserID)}
+      UPDATE Purchases SET
+      Date = ${connection.escape(purchaseData.Date)},
+      Total = ${connection.escape(purchaseData.Total)},
+      ProviderID = ${connection.escape(purchaseData.ProviderID)},
+      BusinessID = ${connection.escape(purchaseData.BusinessID)},
+      WHERE PurchaseID =  = ${connection.escape(purchaseData.PurchaseID)}
     `;
     connection.query(updateData, (error, data) => {
       if (error) {
         throw error;
       } else {
-        callback(null, { msg: "Updated business" });
+        callback(null, { msg: "Updated purchase" });
       }
     });
   } else {
@@ -69,16 +67,16 @@ business.updateBusiness = (businessData, callback) => {
   }
 };
 
-business.deletebusiness = (BusinessID, callback) => {
+purchase.deletePurchase = (PurchaseID, callback) => {
   if (connection) {
     const deleteData = `
-      DELETE FROM Business WHERE BusinessID = ${connection.escape(BusinessID)}
+      DELETE FROM Purchases WHERE PurchaseID = ${connection.escape(PurchaseID)}
     `;
     connection.query(deleteData, (error, data) => {
       if (error) {
         throw error;
       } else {
-        callback(null, { msg: "Deleted business" });
+        callback(null, { msg: "Deleted purchase" });
       }
     });
   } else {
@@ -86,4 +84,4 @@ business.deletebusiness = (BusinessID, callback) => {
   }
 };
 
-module.exports = business;
+module.exports = purchase;

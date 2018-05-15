@@ -14,7 +14,7 @@ function authenticateEmployee(req, res, next) {
   const EmployeePassword = req.body.EmployeePassword;
 
   connection.query(
-    "SELECT * FROM Employees WHERE EmployeeUser = ?",
+    "SELECT * FROM employees JOin business on employees.BusinessID = business.BusinessID  where employees.EmployeeUser = ?",
     EmployeeUser,
     function(error, data, source) {
       if (error) {
@@ -26,14 +26,14 @@ function authenticateEmployee(req, res, next) {
               req.body.EmployeePassword,
               process.env.SECRET_KEY
             );
-            const BusinessID = `SELECT Business.BusinessID FROM Business WHERE BusinessID.UserID = ${connection.escape(BusinessID)}`
-            res.status(200).json({ token, data, BusinessID});
+
+            res.status(200).json({ token, data });
             next();
           } else {
-            res.json({data:{msg: "Wrong data"}});
+            res.json({ data: { msg: "Wrong data" } });
           }
         } else {
-          res.json({data:{msg: "EmployeeUser not found"}});
+          res.json({ data: { msg: "EmployeeUser not found" } });
         }
       }
     }
