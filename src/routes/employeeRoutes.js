@@ -1,5 +1,6 @@
 const express = require("express");
 var employeeController = require("../controllers/employeeController");
+var authenticateEmployee = require("../middlewares/authenticateEmployee");
 var ensureToken = require("../middlewares/ensureToken");
 var authenticateEmployee = require("../middlewares/authenticateEmployee");
 module.exports = function(app) {
@@ -7,6 +8,10 @@ module.exports = function(app) {
     "/employee/listEmployees",
     ensureToken.ensureToken,
     employeeController.listEmployees
+  )
+  app.post(
+    "/employee/loginEmployee",
+    authenticateEmployee.authenticateEmployee
   );
   app.post(
     "/employee/createEmployee",

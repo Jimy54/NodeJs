@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
-process.env.SECRET_KEY = "DespairProyect";
 const mysql = require("mysql");
+process.env.SECRET_KEY = "DespairProyect";
 
 const connection = mysql.createConnection({
   host: "localhost",
