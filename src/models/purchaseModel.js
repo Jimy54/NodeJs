@@ -36,7 +36,10 @@ purchase.createPurchase = (purchaseData, callback) => {
         if (error) {
           throw error;
         } else {
-          callback(null, { msg: "Created purchase" });
+          callback(null, {
+            data,
+            insertID: data.insertID
+          });
         }
       }
     );

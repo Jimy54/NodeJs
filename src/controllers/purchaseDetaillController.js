@@ -11,11 +11,10 @@ function createPurchaseDetail(req, res) {
     PurchaseDetailID: null,
     BusinessID: req.body.BusinessID,
     PurchaseID: req.body.PurchaseID,
-    Description: req.body.Description,
     Price: req.body.Price,
     Quantity: req.body.Quantity,
     SubTotal: req.body.SubTotal,
-    BranchOfficeInventaryID: req.body.BranchOfficeInventaryID
+    InventaryID: req.body.InventaryID
   };
 
   purchaseDetailModel.createPurchaseDetail(
@@ -35,11 +34,10 @@ function updatePurchaseDetail(req, res) {
     PurchaseDetailID: req.params.PurchaseDetailID,
     BusinessID: req.body.BusinessID,
     PurchaseID: req.body.PurchaseID,
-    Description: req.body.Description,
     Price: req.body.Price,
     Quantity: req.body.Quantity,
     SubTotal: req.body.SubTotal,
-    BranchOfficeInventaryID: req.body.BranchOfficeInventaryID
+    InventaryID: req.body.InventaryID
   };
 
   purchaseDetailModel.updatePurchaseDetail(purchaseDetailData, (err, data) => {

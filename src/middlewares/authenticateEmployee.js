@@ -14,11 +14,7 @@ function authenticateEmployee(req, res, next) {
   const EmployeePassword = req.body.EmployeePassword;
 
   connection.query(
-<<<<<<< HEAD
     "SELECT * FROM employees JOin business on employees.BusinessID = business.BusinessID  where employees.EmployeeUser = ?",
-=======
-    "SELECT * FROM Employees JOIN Business ON Employees.BusinessID = Business.BusinessID WHERE EmployeeUser = ?",
->>>>>>> 78e332f8bfbf005f6731651a5a781a0c0a366b8b
     EmployeeUser,
     function(error, data, source) {
       if (error) {
@@ -31,11 +27,7 @@ function authenticateEmployee(req, res, next) {
               process.env.SECRET_KEY
             );
 
-<<<<<<< HEAD
             res.status(200).json({ token, data });
-=======
-            res.status(200).json({token, data});
->>>>>>> 78e332f8bfbf005f6731651a5a781a0c0a366b8b
             next();
           } else {
             res.json({ data: { msg: "Wrong data" } });

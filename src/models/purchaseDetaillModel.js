@@ -51,13 +51,10 @@ purchaseDetail.updatePurchaseDetail = (purchaseDetailData, callback) => {
       UPDATE PurchaseDetails SET
       BusinessID = ${connection.escape(purchaseDetailData.BusinessID)},
       PurchaseID = ${connection.escape(purchaseDetailData.PurchaseID)},
-      Description = ${connection.escape(purchaseDetailData.Description)},
       Price = ${connection.escape(purchaseDetailData.Price)},
       Quantity = ${connection.escape(purchaseDetailData.Quantity)},
-      BranchOfficeInventaryID = ${connection.escape(
-        purchaseDetailData.BranchOfficeInventaryID
-      )},
-      Total = ${connection.escape(purchaseDetailData.Total)}
+      InventaryID = ${connection.escape(purchaseDetailData.InventaryID)},
+      SubTotal = ${connection.escape(purchaseDetailData.Total)}
       WHERE purchaseDetailID =  = ${connection.escape(
         purchaseDetailData.purchaseDetailID
       )}
