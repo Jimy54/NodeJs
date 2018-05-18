@@ -13,6 +13,7 @@ app.listen(app.get("port"), () => {
 //middlewares
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(multipart());
 
 //headers
 app.use((req, res, next) => {
