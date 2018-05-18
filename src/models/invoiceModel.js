@@ -36,7 +36,10 @@ invoice.createInvoice = (invoiceData, callback) => {
         if (error) {
           throw error;
         } else {
-          callback(null, { msg: "Created invoice" });
+          callback(null, {
+            data,
+            insertID: data.insertID
+          });
         }
       }
     );

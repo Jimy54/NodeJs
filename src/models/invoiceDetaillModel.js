@@ -53,8 +53,8 @@ invoiceDetail.updateInvoiceDetail = (invoiceDetailData, callback) => {
       Quantity = ${connection.escape(invoiceDetailData.Quantity)},
       Discount = ${connection.escape(invoiceDetailData.Discount)},
       SubTotal = ${connection.escape(invoiceDetailData.SubTotal)},
-      BranchOfficeInventaryID = ${connection.escape(
-        invoiceDetailData.BranchOfficeInventaryID
+      InventaryID = ${connection.escape(
+        invoiceDetailData.InventaryID
       )},
       BusinessID = ${connection.escape(invoiceDetailData.BusinessID)},
       InvoiceID = ${connection.escape(invoiceDetailData.InvoiceID)}

@@ -3,7 +3,8 @@ var purchaseController = require("../controllers/purchaseController");
 var ensureToken = require("../middlewares/ensureToken");
 
 module.exports = function(app) {
-  app.get(
+  app.
+  get(
     "/purchase/listPurchases",
     ensureToken.ensureToken,
     purchaseController.listPurchases

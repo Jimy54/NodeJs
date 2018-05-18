@@ -27,6 +27,23 @@ employee.listEmployees = callback => {
   }
 };
 
+employee.listEmployees2 = callback => {
+  if (connection) {
+    connection.query(
+      `SELECT * FROM Employees ORDER BY EmployeeID`,
+      (error, data) => {
+        if (error) {
+          throw error;
+        } else {
+          callback(null, data);
+        }
+      }
+    );
+  } else {
+    callback(null, { msg: "Error connection" });
+  }
+};
+
 employee.createEmployee = (employeeData, callback) => {
   if (connection) {
     connection.query(

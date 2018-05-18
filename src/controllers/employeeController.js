@@ -6,6 +6,12 @@ function listEmployees(req, res) {
   });
 }
 
+function listEmployees2(req, res) {
+  employeeModel.listEmployees2((error, data) => {
+    res.status(200).json({ data: { data } });
+  });
+}
+
 function createEmployee(req, res) {
   const employeeData = {
     EmployeeID: null,
@@ -75,5 +81,6 @@ module.exports = {
   listEmployees,
   createEmployee,
   updateEmployee,
+  listEmployees2,
   deleteEmployee
 };

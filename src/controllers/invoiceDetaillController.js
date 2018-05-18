@@ -12,7 +12,7 @@ function createInvoiceDetail(req, res) {
     Quantity: req.body.Quantity,
     Discount: req.body.Discount,
     SubTotal: req.body.SubTotal,
-    BranchOfficeInventaryID: req.body.BranchOfficeInventaryID,
+    InventaryID: req.body.InventaryID,
     BusinessID: req.body.BusinessID,
     InvoiceID: req.body.InvoiceID
   };
@@ -32,7 +32,7 @@ function updateInvoiceDetail(req, res) {
     Quantity: req.body.Quantity,
     Discount: req.body.Discount,
     SubTotal: req.body.SubTotal,
-    BranchOfficeInventaryID: req.body.BranchOfficeInventaryID,
+    InventaryID: req.body.InventaryID,
     BusinessID: req.body.BusinessID,
     InvoiceID: req.body.InvoiceID
   };

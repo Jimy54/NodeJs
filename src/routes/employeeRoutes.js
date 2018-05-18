@@ -8,7 +8,10 @@ module.exports = function(app) {
     "/employee/listEmployees",
     ensureToken.ensureToken,
     employeeController.listEmployees
-  )
+  );
+
+  app.get("/employee/listEmployees2", employeeController.listEmployees2);
+
   app.post(
     "/employee/loginEmployee",
     authenticateEmployee.authenticateEmployee
