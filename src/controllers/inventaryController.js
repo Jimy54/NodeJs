@@ -6,6 +6,12 @@ function listInventaries(req, res) {
   });
 }
 
+function listInventaries2(req, res) {
+  inventaryModel.listInventaries2((error, data) => {
+    res.status(200).json({ data: { data } });
+  });
+}
+
 function createInventary(req, res) {
   const inventaryData = {
     InventaryID: null,
@@ -62,6 +68,7 @@ function deleteInventary(req, res) {
 
 module.exports = {
   listInventaries,
+  listInventaries2,
   createInventary,
   updateInventary,
   deleteInventary

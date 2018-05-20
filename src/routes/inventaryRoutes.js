@@ -7,6 +7,8 @@ module.exports = function(app) {
     ensureToken.ensureToken,
     inventaryController.listInventaries
   );
+
+  app.get("/inventary/listInventaries2", inventaryController.listInventaries2);
   app.post(
     "/inventary/createInventary",
     ensureToken.ensureToken,

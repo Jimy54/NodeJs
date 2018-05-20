@@ -49,7 +49,7 @@ branchOfficeInventary.createBranchOfficeInventary = (
 };
 
 branchOfficeInventary.updateBranchOfficeInventary = (
-  branchOfficeData,
+  branchOfficeInventaryData,
   callback
 ) => {
   if (connection) {
@@ -57,7 +57,7 @@ branchOfficeInventary.updateBranchOfficeInventary = (
       UPDATE BranchOfficesInventary SET
       Description = ${connection.escape(branchOfficeInventaryData.Description)},
       Quantity = ${connection.escape(branchOfficeInventaryData.Quantity)},
-      Price = ${connection.escape(branchOfficeData.Price)},
+      Price = ${connection.escape(branchOfficeInventaryData.Price)},
       CodeBar = ${connection.escape(branchOfficeInventaryData.CodeBar)},
       BusinessID = ${connection.escape(branchOfficeInventaryData.BusinessID)},
       InventaryID = ${connection.escape(branchOfficeInventaryData.InventaryID)},
@@ -87,7 +87,7 @@ branchOfficeInventary.deleteBranchOfficeInventary = (
   if (connection) {
     const deleteData = `
       DELETE FROM BranchOfficesInventary WHERE BranchOfficeInventaryID = ${connection.escape(
-        BranchOfficeInventaryID
+        branchOfficeInventaryID
       )}
     `;
 

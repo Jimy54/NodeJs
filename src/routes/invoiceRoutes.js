@@ -8,6 +8,7 @@ module.exports = function(app) {
     ensureToken.ensureToken,
     invoiceController.listInvoices
   );
+
   app.post(
     "/invoice/createInvoice",
     ensureToken.ensureToken,

@@ -32,7 +32,7 @@ function createBranchOfficeInventary(req, res) {
 
 function updateBranchOfficeInventary(req, res) {
   const branchOfficeInventaryData = {
-    BranchOfficeInventaryID: req.body.params.BranchOfficeInventaryID,
+    BranchOfficeInventaryID: req.params.BranchOfficeInventaryID,
     Description: req.body.Description,
     Quantity: req.body.Quantity,
     Price: req.body.Price,

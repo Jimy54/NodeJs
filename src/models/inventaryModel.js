@@ -27,6 +27,23 @@ inventary.listInventaries = callback => {
   }
 };
 
+inventary.listInventaries2 = callback => {
+  if (connection) {
+    connection.query(
+      `SELECT * FROM Inventaries ORDER BY InventaryID`,
+      (error, data) => {
+        if (error) {
+          throw error;
+        } else {
+          callback(null, data);
+        }
+      }
+    );
+  } else {
+    callback(null, { msg: "Error connection" });
+  }
+};
+
 inventary.createInventary = (inventaryData, callback) => {
   if (connection) {
     connection.query(
