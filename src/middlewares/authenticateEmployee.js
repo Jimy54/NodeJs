@@ -14,9 +14,9 @@ function authenticateEmployee(req, res, next) {
   const EmployeePassword = req.body.EmployeePassword;
 
   connection.query(
-    "SELECT * FROM employees JOin business on employees.BusinessID = business.BusinessID  where employees.EmployeeUser = ?",
+    "SELECT * FROM employees  where employees.EmployeeUser = ?",
     EmployeeUser,
-    function(error, data, source) {
+    function (error, data, source) {
       if (error) {
         res.status(500).json({ msg: "Error sending data" });
       } else {
@@ -26,7 +26,6 @@ function authenticateEmployee(req, res, next) {
               req.body.EmployeePassword,
               process.env.SECRET_KEY
             );
-
             res.status(200).json({ token, data });
             next();
           } else {

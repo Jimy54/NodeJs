@@ -45,8 +45,8 @@ move.updateMove = (moveData, callback) => {
       Description = ${connection.escape(moveData.Description)},
       Total = ${connection.escape(moveData.Total)},
       Date = ${connection.escape(moveData.Date)},
-      BusinessID = ${connection.escape(moveData.BusinessID)},
-      WHERE MoveID =  = ${connection.escape(moveData.MoveID)}
+      BusinessID = ${connection.escape(moveData.BusinessID)}
+      WHERE MoveID   = ${connection.escape(moveData.MoveID)}
     `;
     connection.query(updateData, (error, data) => {
       if (error) {
@@ -60,7 +60,7 @@ move.updateMove = (moveData, callback) => {
   }
 };
 
-move.deleteMOve = (MoveID, callback) => {
+move.deleteMove = (MoveID, callback) => {
   if (connection) {
     const deleteData = `
       DELETE FROM Moves WHERE MoveID = ${connection.escape(MoveID)}
