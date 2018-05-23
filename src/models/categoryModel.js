@@ -11,9 +11,10 @@ const connection = mysql.createConnection({
 let category = {};
 
 category.listCategories = (callback) => {
+  var BusinessID = req.params.BusinessID;
   if(connection){
     connection.query(
-      `SELECT * FROM Categories ORDER BY CategoryID`,
+      `SELECT * FROM Categories Where BusinessID = ${connection.escape(BusinessID)}`,
       (error, data) => {
         if(error){
           throw error;
@@ -64,10 +65,11 @@ category.updateCategory = (categoryData, callback) => {
   }
 };
 
-category.deleteCategory = (CategoryID, callback) => {
+category.deleteCategory = (callback) => {
+  var BusinessID = req.params.BusinessID;
   if(connection){
     const deleteData = `
-      DELETE FROM Categories WHERE CategoryID = ${connection.escape(CategoryID)}
+      DELETE FROM Categories WHERE BusinessID = ${connection.escape(BusinessID)}
     `;
     connection.query(deleteData, (error, data) => {
       if(error){

@@ -11,9 +11,10 @@ const connection = mysql.createConnection({
 let employee = {};
 
 employee.listEmployees = callback => {
+  var BusinessID = req.params.BusinessID;
   if (connection) {
     connection.query(
-      `SELECT * FROM Employees JOIN BranchOffices on Employees.BranchOfficeID =BranchOffices.BranchOfficeID  ORDER BY EmployeeID`,
+      `SELECT * FROM Employees JOIN BranchOffices on Employees.BranchOfficeID =BranchOffices.BranchOfficeID  Where BusinessID = ${connection.escape(BusinessID)}`,
       (error, data) => {
         if (error) {
           throw error;

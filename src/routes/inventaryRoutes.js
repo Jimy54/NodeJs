@@ -3,7 +3,7 @@ var inventaryController = require("../controllers/inventaryController");
 var ensureToken = require("../middlewares/ensureToken");
 module.exports = function(app) {
   app.get(
-    "/inventary/listInventaries",
+    "/inventary/listInventaries/:BusinessID",
     ensureToken.ensureToken,
     inventaryController.listInventaries
   );

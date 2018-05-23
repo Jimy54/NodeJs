@@ -4,7 +4,7 @@ var ensureToken = require("../middlewares/ensureToken");
 
 module.exports = function(app) {
   app.get(
-    "/branchOfficeInventary/listBranchOfficeInventary",
+    "/branchOfficeInventary/listBranchOfficeInventary/:BusinessID",
     ensureToken.ensureToken,
     branchOfficeInventaryController.listBranchOfficeInventary
   );

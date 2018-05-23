@@ -3,7 +3,7 @@ var categoryController = require("../controllers/categoryController");
 var ensureToken = require("../middlewares/ensureToken");
 module.exports = function(app) {
   app.get(
-    "/category/listCategories",
+    "/category/listCategories/:BusinessID",
     ensureToken.ensureToken,
     categoryController.listCategories
   );

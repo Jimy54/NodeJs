@@ -10,10 +10,11 @@ const connection = mysql.createConnection({
 
 let inventary = {};
 
-inventary.listInventaries = callback => {
+inventary.listInventaries = (callback) => {
+  var BusinessID = req.params.BusinessID;
   if (connection) {
     connection.query(
-      `SELECT * FROM Inventaries ORDER BY InventaryID`,
+      `SELECT * FROM Inventaries Where BusinessID = ${connection.escape(BusinessID)}`,
       (error, data) => {
         if (error) {
           throw error;

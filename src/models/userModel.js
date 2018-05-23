@@ -12,7 +12,8 @@ let user = {};
 
 user.listUsers = callback => {
   if (connection) {
-    connection.query(`SELECT * FROM Users ORDER BY UserID`, (error, data) => {
+    connection.query(`SELECT * FROM Users ORDER BY UserID`,
+      (error, data) => {
       if (error) {
         throw error;
       } else {

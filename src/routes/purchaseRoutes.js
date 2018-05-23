@@ -5,7 +5,7 @@ var ensureToken = require("../middlewares/ensureToken");
 module.exports = function(app) {
   app.
   get(
-    "/purchase/listPurchases",
+    "/purchase/listPurchases/:BusinessID",
     ensureToken.ensureToken,
     purchaseController.listPurchases
   );

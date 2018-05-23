@@ -3,7 +3,7 @@ var moveController = require("../controllers/moveController");
 var ensureToken = require("../middlewares/ensureToken");
 
 module.exports = function(app) {
-  app.get("/move/listMoves", ensureToken.ensureToken, moveController.listMoves);
+  app.get("/move/listMoves/:BusinessID", ensureToken.ensureToken, moveController.listMoves);
   app.post(
     "/move/createMove",
     ensureToken.ensureToken,

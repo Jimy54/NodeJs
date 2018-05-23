@@ -5,7 +5,7 @@ var ensureToken = require("../middlewares/ensureToken");
 var authenticateEmployee = require("../middlewares/authenticateEmployee");
 module.exports = function(app) {
   app.get(
-    "/employee/listEmployees",
+    "/employee/listEmployees/:BusinessID",
     ensureToken.ensureToken,
     employeeController.listEmployees
   );
