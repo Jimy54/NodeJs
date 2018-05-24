@@ -14,7 +14,9 @@ employee.listEmployees = callback => {
   var BusinessID = req.params.BusinessID;
   if (connection) {
     connection.query(
-      `SELECT * FROM Employees JOIN BranchOffices on Employees.BranchOfficeID =BranchOffices.BranchOfficeID  Where BusinessID = ${connection.escape(BusinessID)}`,
+      `SELECT * FROM Employees JOIN BranchOffices on Employees.BranchOfficeID =BranchOffices.BranchOfficeID  Where BusinessID = ${connection.escape(
+        BusinessID
+      )}`,
       (error, data) => {
         if (error) {
           throw error;
@@ -29,9 +31,12 @@ employee.listEmployees = callback => {
 };
 
 employee.listEmployees2 = callback => {
+  var BusinessID = req.params.BusinessID;
   if (connection) {
     connection.query(
-      `SELECT * FROM Employees ORDER BY EmployeeID`,
+      `SELECT * FROM Employees  Where BusinessID = ${connection.escape(
+        BusinessID
+      )}`,
       (error, data) => {
         if (error) {
           throw error;

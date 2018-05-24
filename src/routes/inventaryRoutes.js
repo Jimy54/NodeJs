@@ -8,7 +8,10 @@ module.exports = function(app) {
     inventaryController.listInventaries
   );
 
-  app.get("/inventary/listInventaries2", inventaryController.listInventaries2);
+  app.get(
+    "/inventary/listInventaries2/::BusinessID",
+    inventaryController.listInventaries2
+  );
   app.post(
     "/inventary/createInventary",
     ensureToken.ensureToken,

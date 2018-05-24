@@ -10,7 +10,10 @@ module.exports = function(app) {
     employeeController.listEmployees
   );
 
-  app.get("/employee/listEmployees2", employeeController.listEmployees2);
+  app.get(
+    "/employee/listEmployees2/:BusinessID",
+    employeeController.listEmployees2
+  );
 
   app.post(
     "/employee/loginEmployee",

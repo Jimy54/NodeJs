@@ -11,18 +11,14 @@ const connection = mysql.createConnection({
 let invoiceDetail = {};
 
 invoiceDetail.listInvoiceDetails = callback => {
-  var BusinessID = req.params.BusinessID;
   if (connection) {
-    connection.query(
-      `SELECT * FROM invoiceDetails Where BusinessID = ${connection.escape(BusinessID)}`,
-      (error, data) => {
-        if (error) {
-          throw error;
-        } else {
-          callback(null, data);
-        }
+    connection.query(`SELECT * FROM invoiceDetails`, (error, data) => {
+      if (error) {
+        throw error;
+      } else {
+        callback(null, data);
       }
-    );
+    });
   } else {
     callback(null, { msg: "Error connection" });
   }
@@ -54,9 +50,7 @@ invoiceDetail.updateInvoiceDetail = (invoiceDetailData, callback) => {
       Quantity = ${connection.escape(invoiceDetailData.Quantity)},
       Discount = ${connection.escape(invoiceDetailData.Discount)},
       SubTotal = ${connection.escape(invoiceDetailData.SubTotal)},
-      InventaryID = ${connection.escape(
-        invoiceDetailData.InventaryID
-      )},
+      InventaryID = ${connection.escape(invoiceDetailData.InventaryID)},
       BusinessID = ${connection.escape(invoiceDetailData.BusinessID)},
       InvoiceID = ${connection.escape(invoiceDetailData.InvoiceID)}
     `;
