@@ -11,10 +11,12 @@ const connection = mysql.createConnection({
 let provider = {};
 
 provider.listProviders = callback => {
-  var BusinessID = req.params.BusinessID;
+  const BusinessData ={
+    BusinessID: req.params.BusinessID
+  }
   if (connection) {
     connection.query(
-      `SELECT * FROM Providers Where BusinessID = ${connection.escape(BusinessID)}`,
+      `SELECT * FROM Providers Where BusinessID = ${connection.escape(BusinessData.BusinessID)}`,
       (error, data) => {
         if (error) {
           throw error;
