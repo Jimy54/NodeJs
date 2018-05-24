@@ -1,13 +1,19 @@
 const inventaryModel = require("../models/inventaryModel");
 
 function listInventaries(req, res) {
-  inventaryModel.listInventaries((error, data) => {
+  const businessData = {
+    BusinessID: req.params.BusinessID
+  }
+  inventaryModel.listInventaries(businessData, (error, data) => {
     res.status(200).json(data);
   });
 }
 
 function listInventaries2(req, res) {
-  inventaryModel.listInventaries2((error, data) => {
+  const businessData = {
+    BusinessID: req.params.BusinessID
+  }
+  inventaryModel.listInventaries2(businessData, (error, data) => {
     res.status(200).json({ data: { data } });
   });
 }

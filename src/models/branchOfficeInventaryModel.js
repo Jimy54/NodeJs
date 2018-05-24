@@ -10,14 +10,10 @@ const connection = mysql.createConnection({
 
 let branchOfficeInventary = {};
 
-branchOfficeInventary.listBranchOfficeInventary = (callback) => {
-  const BusinessData ={
-    BusinessID: req.params.BusinessID
-  }
-
+branchOfficeInventary.listBranchOfficeInventary = (businessData, callback) => {
   if (connection) {
     connection.query(
-      `SELECT * FROM BranchOfficesInventary JOin BranchOffices on BranchOfficesInventary.BranchOfficeID =  BranchOffices.BranchOfficeID Where BusinessID = ${connection.escape(BusinessData.BusinessID)}`,
+      `SELECT * FROM BranchOfficesInventary JOin BranchOffices on BranchOfficesInventary.BranchOfficeID =  BranchOffices.BranchOfficeID Where branchOfficeInventary.BusinessID = ${connection.escape(businessData.BusinessID)}`,
       (error, data) => {
         if (error) {
           throw error;

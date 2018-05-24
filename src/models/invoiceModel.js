@@ -10,7 +10,7 @@ const connection = mysql.createConnection({
 
 let invoice = {};
 
-invoice.listInvoices = callback => {
+invoice.listInvoices = (callback) => {
   if (connection) {
     connection.query(`SELECT * FROM Invoices`, (error, data) => {
       if (error) {

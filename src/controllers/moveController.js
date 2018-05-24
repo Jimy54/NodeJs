@@ -1,7 +1,10 @@
 const moveModel = require("../models/moveModel");
 
 function listMoves(req, res) {
-  moveModel.listMoves((error, data) => {
+  const businessData = {
+    BusinessID: req.params.BusinessID
+  }
+  moveModel.listMoves(businessData, (error, data) => {
     res.status(200).json(data);
   });
 }

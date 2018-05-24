@@ -10,12 +10,9 @@ const connection = mysql.createConnection({
 
 let move = {};
 
-move.listMoves = callback => {
-  const BusinessData ={
-    BusinessID: req.params.BusinessID
-  }
+move.listMoves = (businessData, callback) => {
   if (connection) {
-    connection.query(`SELECT * FROM Moves Where BusinessID = ${connection.escape(BusinessData.BusinessID)}`,
+    connection.query(`SELECT * FROM Moves Where Moves.BusinessID = ${connection.escape(businessData.BusinessID)}`,
       (error, data) => {
       if (error) {
         throw error;

@@ -1,7 +1,10 @@
 const branchOfficeInventaryModel = require("../models/branchOfficeInventaryModel");
 
 function listBranchOfficeInventary(req, res) {
-  branchOfficeInventaryModel.listBranchOfficeInventary((error, data) => {
+  const businessData = {
+    BusinessID: req.params.BusinessID
+  }
+  branchOfficeInventaryModel.listBranchOfficeInventary(businessData, (error, data) => {
     res.status(200).json(data);
   });
 }

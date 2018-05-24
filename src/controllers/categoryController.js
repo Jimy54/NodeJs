@@ -1,7 +1,10 @@
 const categoryModel = require("../models/categoryModel");
 
 function listCategories(req, res) {
-  categoryModel.listCategories((error, data) => {
+  const businessData = {
+    BusinessID: req.params.BusinessID
+  }
+  categoryModel.listCategories(businessData, (error, data) => {
     res.status(200).json(data);
   });
 }

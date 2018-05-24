@@ -1,7 +1,10 @@
 const providerModel = require("../models/providerModel");
 
 function listProviders(req, res) {
-  providerModel.listProviders((error, data) => {
+  const businessData = {
+    BusinessID: req.params.BusinessID
+  }
+  providerModel.listProviders(businessData, (error, data) => {
     res.status(200).json(data);
   });
 }

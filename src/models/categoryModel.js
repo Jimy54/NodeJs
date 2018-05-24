@@ -10,15 +10,11 @@ const connection = mysql.createConnection({
 
 let category = {};
 
-category.listCategories = (callback, req) => {
-  const BusinessData ={
-    BusinessID: req.params.BusinessID
-  }
-
+category.listCategories = (businessData, callback) => {
   if (connection) {
     connection.query(
-      `SELECT * FROM Categories Where BusinessID = ${connection.escape(
-        BusinessData.BusinessID
+      `SELECT * FROM Categories Where Categories.BusinessID = ${connection.escape(
+        businessData.BusinessID
       )}`,
       (error, data) => {
         if (error) {

@@ -1,7 +1,10 @@
 const branchOfficeModel = require("../models/branchOfficeModel");
 
 function listBranchOffices(req, res) {
-  branchOfficeModel.listBranchOffices((error, data) => {
+  const businessData = {
+    BusinessID: req.params.BusinessID
+  }
+  branchOfficeModel.listBranchOffices(businessData, (error, data) => {
     res.status(200).json(data);
   });
 }

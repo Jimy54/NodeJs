@@ -9,7 +9,7 @@ module.exports = function(app) {
   );
 
   app.get(
-    "/inventary/listInventaries2/::BusinessID",
+    "/inventary/listInventaries2/:BusinessID",
     inventaryController.listInventaries2
   );
   app.post(
