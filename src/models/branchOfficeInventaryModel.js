@@ -13,7 +13,7 @@ let branchOfficeInventary = {};
 branchOfficeInventary.listBranchOfficeInventary = (businessData, callback) => {
   if (connection) {
     connection.query(
-      `SELECT * FROM BranchOfficesInventary JOin BranchOffices on BranchOfficesInventary.BranchOfficeID =  BranchOffices.BranchOfficeID Where branchOfficeInventary.BusinessID = ${connection.escape(businessData.BusinessID)}`,
+      `SELECT * FROM BranchOfficesInventary JOin BranchOffices on BranchOfficesInventary.BranchOfficeID =  BranchOffices.BranchOfficeID Where BranchOfficesInventary.BusinessID = ${connection.escape(businessData.BusinessID)}`,
       (error, data) => {
         if (error) {
           throw error;

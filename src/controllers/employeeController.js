@@ -1,6 +1,5 @@
 const employeeModel = require("../models/employeeModel");
 
-
 function listEmployees(req, res) {
   const businessData = {
     BusinessID: req.params.BusinessID
