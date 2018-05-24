@@ -1,13 +1,20 @@
 const employeeModel = require("../models/employeeModel");
 
+
 function listEmployees(req, res) {
-  employeeModel.listEmployees((error, data) => {
+  const employeeData = {
+    BusinessID: req.params.BusinessID
+  }
+  employeeModel.listEmployees(employeeData, (error, data) => {
     res.status(200).json(data);
   });
 }
 
 function listEmployees2(req, res) {
-  employeeModel.listEmployees2((error, data) => {
+  const employeeData = {
+    BusinessID: req.params.BusinessID
+  }
+  employeeModel.listEmployees2(employeeData, (error, data) => {
     res.status(200).json({ data: { data } });
   });
 }
