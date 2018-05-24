@@ -33,7 +33,7 @@ inventary.listInventaries2 = (businessData, callback) => {
   if (connection) {
     connection.query(
       `SELECT * FROM Inventaries Where Inventaries.BusinessID = ${connection.escape(
-        Inventaries.BusinessID
+        businessData.BusinessID
       )}`,
       (error, data) => {
         if (error) {
